@@ -1,0 +1,10 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+OUTPUT_DIR : "./output/inference_maskrcnn_coco"
+MODEL:
+  WEIGHTS: "./model_zoo/maskrcnn_coco_R50_FPN_a54504.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  TEST: ("coco_2017_val",)

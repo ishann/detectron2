@@ -1,0 +1,4 @@
+#!/bin/bash
+EXP_NAME="$0"
+
+echo "The file/ experiment name is: "${EXP_NAME}

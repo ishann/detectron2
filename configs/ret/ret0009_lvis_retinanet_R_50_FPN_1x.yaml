@@ -1,0 +1,33 @@
+_BASE_: "../Base-RetinaNet.yaml"
+OUTPUT_DIR : "./output/ret0009_lvis"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  RETINANET:
+    NUM_CLASSES: 1230               # Default: 80
+    # Prior prob for rare case (i.e. foreground) at the beginning of training.
+    # This is used to set the bias for the logits layer of the classifier subnet.
+    # This improves training stability in the case of heavy class imbalance.
+    PRIOR_PROB: 0.01                # Default: 0.01    
+    # Loss parameters
+    FOCAL_LOSS_GAMMA: 2.0           # Default: 2.0
+    FOCAL_LOSS_ALPHA: 0.25          # Default: 0.25
+    SMOOTH_L1_LOSS_BETA: 0.1        # Default: 0.1
+    #SCORE_THRESH_TEST: 0.0001      # Default: 0.0001
+INPUT:
+  MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
+DATASETS:
+  TRAIN: ("lvis_v0.5_train",)
+  TEST: ("lvis_v0.5_val",)
+#TEST:
+#  DETECTIONS_PER_IMAGE: 300  # LVIS allows up to 300
+#DATALOADER:
+#  SAMPLER_TRAIN: "RepeatFactorTrainingSampler"
+#  REPEAT_THRESHOLD: 0.001
+SOLVER:
+  IMS_PER_BATCH: 7            # Now, working with 1 per GPU and 7 GPUs.
+  BASE_LR: 0.0005             # Default for 1 img/GPU and 8 GPUS is 0.005
+  STEPS: (12000, 160000)
+  MAX_ITER: 1800000

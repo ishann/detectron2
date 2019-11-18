@@ -1,0 +1,17 @@
+_BASE_: "Base-RCNN-FPN.yaml"
+OUTPUT_DIR : "./output/switch_rpn_class/coco_rpn_lvis_class/thresh_0_05"
+MODEL:
+  WEIGHTS: "./output/switch_rpn_class/coco_rpn_lvis_class/coco_rpn_lvis_class.pth"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 1230
+    SCORE_THRESH_TEST: 0.05
+INPUT:
+  MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
+DATASETS:
+  TRAIN: ("lvis_v0.5_train",)
+  TEST: ("lvis_v0.5_val",)
+TEST:
+  DETECTIONS_PER_IMAGE: 300  # LVIS allows up to 300

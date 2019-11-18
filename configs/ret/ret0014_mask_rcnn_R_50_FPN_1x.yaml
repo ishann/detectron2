@@ -1,0 +1,17 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+OUTPUT_DIR : "./output/ret0014"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+  ROI_HEADS:
+    NUM_CLASSES: 80
+    SCORE_THRESH_TEST: 0.0001
+INPUT:
+  MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
+DATASETS:
+  TRAIN: ("LVIS80_train",)
+SOLVER: # Do stuff here, if it matters.
+  IMS_PER_BATCH: 8
+  

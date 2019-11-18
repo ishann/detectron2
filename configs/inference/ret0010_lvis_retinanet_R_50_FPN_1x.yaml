@@ -1,0 +1,25 @@
+_BASE_: "../Base-RetinaNet.yaml"
+OUTPUT_DIR : "./output/inference_ret0010_lvis"
+MODEL:
+  WEIGHTS: "./output/ret0010_lvis/model_0144999.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  RETINANET:
+    NUM_CLASSES: 1230               # Default: 80
+    SCORE_THRESH_TEST: 0.0001       
+INPUT:
+  MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
+DATASETS:
+  TRAIN: ("lvis_v0.5_train",)
+  TEST: ("lvis_v0.5_val",)
+TEST:
+  DETECTIONS_PER_IMAGE: 300  # LVIS allows up to 300
+DATALOADER:
+  SAMPLER_TRAIN: "RepeatFactorTrainingSampler"
+  REPEAT_THRESHOLD: 0.001
+SOLVER:
+  IMS_PER_BATCH: 8          # Now, working with 1 per GPU and 8 GPUs.
+  BASE_LR: 0.0005             # Default for 1 img/GPU and 8 GPUS is 0.005
+  STEPS: (12000, 160000)
+  MAX_ITER: 1800000

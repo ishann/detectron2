@@ -1,0 +1,8 @@
+# Add mmdet to PYTHONPATH
+export PYTHONPATH=`pwd`:$PYTHONPATH
+
+# export LD_LIBRARY_PATH="${LD_LIBRARY_PATH}":"/opt/cuda-10.0/lib64/"
+export PATH=/opt/cuda-10.0/bin${PATH:+:${PATH}}$ 
+export LD_LIBRARY_PATH=/opt/cuda-10.0/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+
+

@@ -1,0 +1,7 @@
+_BASE_: "Base-RCNN-FPN.yaml"
+OUTPUT_DIR : "./output/switch_rpn_class/lvis_rpn_coco_class"
+MODEL:
+  WEIGHTS: "./output/switch_rpn_class/lvis_rpn_coco_class/lvis_rpn_coco_class.pth"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50

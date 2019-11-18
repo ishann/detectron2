@@ -87,7 +87,8 @@ class LVISEvaluator(DatasetEvaluator):
                     # use RLE to encode the masks, because they are too large and takes memory
                     # since this evaluator stores outputs of the entire dataset
                     rles = [
-                        mask_util.encode(np.array(mask[:, :, None], order="F"))[0]
+                        # mask_util.encode(np.array(mask[:, :, None], order="F"))[0]
+                        mask_util.encode(np.array(mask[:, :, None], dtype=np.uint8, order="F"))[0]
                         for mask in instances.pred_masks
                     ]
                     for rle in rles:

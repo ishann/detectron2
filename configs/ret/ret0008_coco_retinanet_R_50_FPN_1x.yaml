@@ -1,0 +1,9 @@
+_BASE_: "../Base-RetinaNet.yaml"
+OUTPUT_DIR : "./output/ret0008_coco"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+INPUT:
+  MIN_SIZE_TRAIN: (640, 672, 704, 736, 768, 800)
