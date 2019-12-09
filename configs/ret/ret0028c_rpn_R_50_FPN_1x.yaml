@@ -1,0 +1,16 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "./output/ret0028c"
+MODEL:
+  META_ARCHITECTURE: "ProposalNetwork"
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  RPN:
+    POST_NMS_TOPK_TEST: 2000
+    POSITIVE_FRACTION: 0.6
+DATASETS:
+  TRAIN: ("lvis_v0.5_train",)
+  TEST: ("lvis_v0.5_val",)
+TEST:
+  DETECTIONS_PER_IMAGE: 300  # LVIS allows up to 300

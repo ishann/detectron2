@@ -12,6 +12,7 @@ from detectron2.utils.events import get_event_storage
 
 from ..sampling import subsample_labels
 
+
 logger = logging.getLogger(__name__)
 
 # TODO: comments for future refactoring of this module
@@ -87,6 +88,7 @@ def find_top_rpn_proposals(
         proposals (list[Instances]): list of N Instances. The i-th Instances
             stores post_nms_topk object proposals for image i.
     """
+
     image_sizes = images.image_sizes  # in (h, w) order
     num_images = len(image_sizes)
     device = proposals[0].device

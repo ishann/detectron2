@@ -1,0 +1,11 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "./output/inference/ret0017_fewer"
+MODEL:
+  META_ARCHITECTURE: "ProposalNetwork"
+  WEIGHTS: "./output/ret/ret0017/model_0089999.pth"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  RPN:
+    NMS_THRESH: 0.25
+    POST_NMS_TOPK_TEST: 20        # Original was 2000. This is for visualization.

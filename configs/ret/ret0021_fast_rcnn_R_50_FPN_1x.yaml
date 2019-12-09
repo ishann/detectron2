@@ -1,0 +1,18 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+OUTPUT_DIR : "./output/ret0021"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  LOAD_PROPOSALS: True
+  RESNETS:
+    DEPTH: 50
+  PROPOSAL_GENERATOR:
+    NAME: "PrecomputedProposals"
+DATASETS:
+  TRAIN: ("coco_2017_train",)
+  PROPOSAL_FILES_TRAIN: ("./datasets/detectron2/proposals/ret0017_0089999_coco_trn_box_proposals.pkl", )
+  TEST: ("coco_2017_val",)
+  PROPOSAL_FILES_TEST: ("./datasets/detectron2/proposals/ret0017_0089999_coco_val_box_proposals.pkl", )
+DATALOADER:
+  # proposals are part of the dataset_dicts, and take a lot of RAM
+  NUM_WORKERS: 2

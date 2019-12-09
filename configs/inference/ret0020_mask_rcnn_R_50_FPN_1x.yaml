@@ -1,0 +1,7 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "./output/inference_ret0020"
+MODEL:
+  WEIGHTS: "./output/ret0020/model_0089999.pth"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50

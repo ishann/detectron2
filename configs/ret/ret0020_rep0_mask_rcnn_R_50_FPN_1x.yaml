@@ -1,0 +1,7 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "./output/ret0020_rep0"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50

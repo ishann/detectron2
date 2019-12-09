@@ -13,6 +13,8 @@ from ..matcher import Matcher
 from .build import PROPOSAL_GENERATOR_REGISTRY
 from .rpn_outputs import RPNOutputs, find_top_rpn_proposals
 
+# import ipdb
+
 RPN_HEAD_REGISTRY = Registry("RPN_HEAD")
 """
 Registry for RPN heads, which take feature maps and perform
@@ -73,6 +75,7 @@ class StandardRPNHead(nn.Module):
         Args:
             features (list[Tensor]): list of feature maps
         """
+        # ipdb.set_trace()
         pred_objectness_logits = []
         pred_anchor_deltas = []
         for x in features:
@@ -136,6 +139,7 @@ class RPN(nn.Module):
             proposals: list[Instances] or None
             loss: dict[Tensor]
         """
+        # ipdb.set_trace()
         gt_boxes = [x.gt_boxes for x in gt_instances] if gt_instances is not None else None
         del gt_instances
         features = [features[f] for f in self.in_features]

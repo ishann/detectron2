@@ -29,13 +29,13 @@ import sys
 
 from detectron2.config import get_cfg
 from utils import execute_bash_command, setup, prepare_exec
-from utils import fetch_args, print_args
+from utils import fetch_args, print_args_stdout
 
 
 ################################################################################
 ##  Define things.                                                            ##
 ################################################################################
-ROOT_D2 = "/scratch/cluster/ishann/research/recognizing-every-thing/D2/detectron2"
+ROOT_D2 = "/scratch/cluster/ishann/research/recognizing-every-thing/detectron2"
 
 
 ################################################################################
@@ -43,7 +43,8 @@ ROOT_D2 = "/scratch/cluster/ishann/research/recognizing-every-thing/D2/detectron
 ################################################################################
 def main():
 
-    args = fetch_args()
+    args = fetch_args(ROOT_D2)
+    # ipdb.set_trace()
     print_args_stdout(args)
 
     CHKPTS = sorted(glob(os.path.join(ROOT_D2, args.chkpts_path, "*.pth")))

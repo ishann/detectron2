@@ -1,0 +1,24 @@
+# Just a copy of cpn_0001.
+_BASE_: "Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "./output/cpn_dbug/"
+MODEL:
+  META_ARCHITECTURE: "ConPropNetProposalNetwork"
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: False
+  RESNETS:
+    DEPTH: 50
+  PROPOSAL_GENERATOR:
+    NAME: "ConPropNetRPN"
+  RPN:
+    POST_NMS_TOPK_TEST: 2000
+DATASETS:
+  TRAIN: ("lvis_v0.5_train",)
+  TEST: ("lvis_v0.5_val",)
+TEST:
+  DETECTIONS_PER_IMAGE: 300  # LVIS allows up to 300
+SOLVER:
+  IMS_PER_BATCH: 2                      # Default: 16
+  BASE_LR: 0.0025                       # Default: 0.02
+  STEPS: (480000, 640000)
+  MAX_ITER: 720000                      # Apply smarter OWS.
+

@@ -1,5 +1,5 @@
 _BASE_: "../Base-RCNN-FPN.yaml"
-OUTPUT_DIR : "./output/ret_ows04"
+OUTPUT_DIR : "./output/ows/ows04"
 MODEL:
   WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
   MASK_ON: True
@@ -20,8 +20,8 @@ DATALOADER:
   REPEAT_THRESHOLD: 0.001
   NUM_WORKERS: 2              # Default is 4. But, jobs keep crashing. So, set to 2.
 SOLVER:
-  IMS_PER_BATCH: 8            # Now, working with 1 per GPU and 8 GPUs.
-  BASE_LR: 0.01               # Default for 2 img/GPU and 8 GPUS is 0.01
-  STEPS: (12000, 160000)
-  MAX_ITER: 18000000          # 100x than actual experiment.
+  IMS_PER_BATCH: 16           # Default is 2 img/GPU and 8 GPUs. Now, do 4img/GPU and 4 GPUs.
+  BASE_LR: 0.02               # Default for 2 img/GPU and 8 GPUS is 0.01
+  STEPS: (6000, 80000)
+  MAX_ITER: 9000000           # 100x than actual experiment.
   CHECKPOINT_PERIOD: 500000   # Only checkpoint every 500,000 iterations.

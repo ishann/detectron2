@@ -5,6 +5,7 @@ from setproctitle import setproctitle
 from os.path import normpath
 from glob import glob
 import subprocess
+import argparse
 import yaml
 import copy
 import ipdb
@@ -67,7 +68,7 @@ def prepare_exec(cfg_file):
 ################################################################################
 ##  Argument parser.                                                          ##
 ################################################################################
-def fetch_args():
+def fetch_args(ROOT_D2):
 
     parser = argparse.ArgumentParser(description="Infer everything.")
 

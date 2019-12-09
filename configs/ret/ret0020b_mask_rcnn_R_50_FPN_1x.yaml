@@ -1,0 +1,10 @@
+_BASE_: "../Base-RCNN-FPN.yaml"
+OUTPUT_DIR: "./output/ret0020b"
+MODEL:
+  WEIGHTS: "detectron2://ImageNetPretrained/MSRA/R-50.pkl"
+  MASK_ON: True
+  RESNETS:
+    DEPTH: 50
+DATALOADER:
+  SAMPLER_TRAIN: "RepeatFactorTrainingSampler"
+  REPEAT_THRESHOLD: 0.001

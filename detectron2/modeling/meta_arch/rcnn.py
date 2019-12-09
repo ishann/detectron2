@@ -156,6 +156,7 @@ class ProposalNetwork(nn.Module):
         self.device = torch.device(cfg.MODEL.DEVICE)
 
         self.backbone = build_backbone(cfg)
+
         self.proposal_generator = build_proposal_generator(cfg, self.backbone.output_shape())
 
         pixel_mean = torch.Tensor(cfg.MODEL.PIXEL_MEAN).to(self.device).view(-1, 1, 1)
